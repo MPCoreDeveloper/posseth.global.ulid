@@ -8,9 +8,25 @@ namespace Posseth.Global.UlidFactory
     {
         public static string NewUlid()
         {
-            byte[] ulidBytes = new byte[16];
+              return  NewUlid(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
-            long timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        }
+        public static string NewUlid(DateTimeOffset timestamp)
+        {
+            return NewUlid(timestamp.ToUnixTimeMilliseconds());
+        }
+        public static string NewUlid(DateTime timestamp)
+        {
+            return NewUlid(new DateTimeOffset(timestamp).ToUnixTimeMilliseconds());
+        }
+        
+        public  static string NewUlid(long timestamp)
+        {
+            if (timestamp < 0)
+            {
+                throw new ArgumentException("Timestamp must be a positive number.");
+            }
+            byte[] ulidBytes = new byte[16];
 
             for (int i = 5; i >= 0; i--)
             {
@@ -22,8 +38,8 @@ namespace Posseth.Global.UlidFactory
                 rng.GetBytes(ulidBytes, 6, 10);
 
             return Base32.Encode(ulidBytes);
-
         }
+        
         public static DateTime GetTimestampFromUlid(string ulid)
         {
             if (ulid.Length != 26)
