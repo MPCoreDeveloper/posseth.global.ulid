@@ -17,7 +17,7 @@ it can handle new Ulids but also existing Ulids read from Database and optionall
 
 ## Installation
 To install Posseth.Global.UlidFactory, add the following reference to your project:
-Posseth.Global.UlidFactory
+using Posseth.Global.UlidFactory;
 
 ## Usage
 To use Posseth.Global.UlidFactory in a C# project, add the following using statement to your C# file:
