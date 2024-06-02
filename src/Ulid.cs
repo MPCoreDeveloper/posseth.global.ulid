@@ -108,6 +108,8 @@ namespace Posseth.Global.UlidFactory
             return !string.IsNullOrEmpty(value);
         }
 
+
+
         public static bool TryParse(string ulidString, out Ulid? ulid)
         {
             ulid = null;
