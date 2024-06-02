@@ -1,7 +1,8 @@
 # Posseth.Global.UlidFactory
 
 ## Overview
-This library is a C# library that provides a Ulid type in C# 
+This library is a C# library that provides a Ulid type in .Net 
+(C#,VB.Net tested by DEV)
 
 ## What is a ULID?
 A ULID (Universally Unique Lexicographically Sortable Identifier) is a 128-bit identifier that is designed to be unique and time-ordered.
@@ -17,7 +18,7 @@ it can handle new Ulids but also existing Ulids read from Database and optionall
 
 ## Installation
 To install Posseth.Global.UlidFactory, add the following reference to your project:
-Posseth.Global.UlidFactory
+using Posseth.Global.UlidFactory;
 
 ## Usage
 To use Posseth.Global.UlidFactory in a C# project, add the following using statement to your C# file:
