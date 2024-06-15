@@ -30,6 +30,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +48,10 @@
     <Compile Include="Encoding\Base32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ulid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Deploy\Posseth.Global.UlidFactory.MSSQL.dll" />
+    <None Include="Deploy\Posseth.Global.UlidFactory.MSSQL.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -121,4 +121,66 @@ In summary, the Ulid class provides methods for generating, parsing, and extract
 By following the examples above, you can incorporate ULID generation and handling in your C# applications.
 The class ensures that the ULIDs generated are unique and time-ordered, providing a robust solution for use cases requiring such identifiers.
 
+# Posseth.Global.UlidFactory.MSSQL
+This library is a C# library that provides a Ulid type in .Net MSSQL CLR 
 
+## Installation
+Build the project and add the Posseth.Global.UlidFactory.MSSQL.dll assembly to your MSSQL database
+
+First, you need to enable CLR integration on your SQL Server instance by running the following command:
+```sql
+sp_configure 'clr enabled', 1;
+RECONFIGURE;
+```
+First you need to create a file hash of the assembly
+```powershell
+certutil -hashfile "C:\path\to\your\Posseth.Global.UlidFactory.MSSQL.dll" SHA512
+```
+the result should be something like this
+"b424f44500e83e72c8b4b60528250a40a4eabfddbb6b9c0e93208e6ddc63815e80180f26814f85bdad5ba2c88209d732397c7599e809da6df5146cc94daa250e"
+
+Before you add the assembly to the database you need to tell MSSQL that you trust the assembly by running the following command
+```sql
+-- Step 1: Declare a variabel and convert the hash to a binary value
+DECLARE @binaryHash varbinary(64);
+SET @binaryHash = CONVERT(varbinary(64), 0xB424F44500E83E72C8B4B60528250A40A4EABFDDBB6B9C0E93208E6DDC63815E80180F26814F85BDAD5BA2C88209D732397C7599E809DA6DF5146CC94DAA250E, 1);
+
+-- Step 2:  use the variabel as parameter in the stored procedure
+EXEC sp_add_trusted_assembly 
+    @hash = @binaryHash;
+
+```
+Now you can add the assembly to the database
+```sql
+CREATE ASSEMBLY UlidFactoryMSSQL
+FROM 'C:\path\to\your\Posseth.Global.UlidFactory.MSSQL.dll'
+WITH PERMISSION_SET = SAFE;
+
+```
+The execute should give you 'Commands completed successfully.'
+now you can create the Ulid type in the database
+```sql
+CREATE FUNCTION dbo.GenerateUlid()
+RETURNS NVARCHAR(100)
+AS EXTERNAL NAME [UlidFactoryMSSQL].[Posseth.Global.UlidFactory.MSSQL.CLR.UlidFunctionsHelpers].[GenerateUlid];
+GO
+
+CREATE FUNCTION dbo.GenerateUlidWithTimestamp(@timestamp DATETIME)
+RETURNS NVARCHAR(100)
+AS EXTERNAL NAME [UlidFactoryMSSQL].[Posseth.Global.UlidFactory.MSSQL.CLR.UlidFunctionsHelpers].[GenerateUlidWithTimestamp];
+GO
+
+CREATE FUNCTION dbo.ExtractDateFromUlid(@ulidString NVARCHAR(100))
+RETURNS DATETIME
+AS EXTERNAL NAME [UlidFactoryMSSQL].[Posseth.Global.UlidFactory.MSSQL.CLR.UlidFunctionsHelpers].[ExtractDateFromUlid];
+GO
+```
+The execute should give you 'Commands completed successfully.'
+Now you can use the functions in your database
+```sql
+SELECT dbo.GenerateUlid();
+SELECT dbo.GenerateUlidWithTimestamp(GETDATE());
+SELECT dbo.ExtractDateFromUlid('01F8MECHZX3TBDSZ7FBJ4H7FJ6');
+```
+The execute should give you a new Ulid, a new Ulid with a timestamp and the timestamp extracted from the Ulid (1982-11-13 14:32:34.560)
+for your convenience I added the compiled DLL to the repository so you can use the above commands to add the assembly to your database
