@@ -1,9 +1,13 @@
-﻿using System;
+﻿//Michel Posseth - 2024-05-26 YYYY-MM-DD
+// made type methods static / more robust
+// Entry point for SQL Server CLR functions
+using System;
+using System.Data;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
-namespace Posseth.Global.UlidFactory.MSSQL
+namespace Posseth.Global.UlidFactory.MSSQL.CLR
 {
-    public  class UlidFunctions
+    public class UlidFunctionsHelpers
     {
 
         [SqlFunction(IsDeterministic = true, IsPrecise = true)]
@@ -19,13 +23,12 @@ namespace Posseth.Global.UlidFactory.MSSQL
         [SqlFunction(IsDeterministic = true, IsPrecise = true)]
         public static SqlDateTime ExtractDateFromUlid(SqlString ulidString)
         {
-            if (!Ulid.TryParse(ulidString.Value, out Ulid? ulid))
+            if (!Ulid.TryParse(ulidString.Value, out Ulid ulid))
                 return SqlDateTime.Null;
 
-                return (ulid is not null && ulid.HasValue())? new SqlDateTime(ulid.ToDateTime()): SqlDateTime.Null;
-          
-        }
+            return (ulid != null && ulid.HasValue()) ? new SqlDateTime(ulid.ToDateTime()) : SqlDateTime.Null;
 
+        }
 
     }
 }
