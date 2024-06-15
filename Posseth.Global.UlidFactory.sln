@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Posseth.Global.UlidFactory", "src\Posseth.Global.UlidFactory.csproj", "{A17C39CF-C23C-4C1F-B0CA-81CAC8CFD203}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Posseth.Global.UlidFactory.Tests", "Tests\Posseth.Global.UlidFactory.Tests.csproj", "{C65A2A01-058C-4157-AF30-CF8125B0F19C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{92DBEB8D-610E-4A0B-8899-DC1348A6FC90}"
@@ -13,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.MD = README.MD
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Posseth.Global.UlidFactory.MSSQL", "posseth.global.ulid.mssql\Posseth.Global.UlidFactory.MSSQL.csproj", "{A9EBC267-28C0-4FC8-8D46-4C244B5BEC55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Posseth.Global.UlidFactory", "src\Posseth.Global.UlidFactory\Posseth.Global.UlidFactory.csproj", "{A80CF1FB-EEAC-409F-BA2D-B76B62B850B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Posseth.Global.UlidFactory.MSSQL", "src\posseth.global.ulid.mssql\Posseth.Global.UlidFactory.MSSQL.csproj", "{A9EBC267-28C0-4FC8-8D46-4C244B5BEC55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A17C39CF-C23C-4C1F-B0CA-81CAC8CFD203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A17C39CF-C23C-4C1F-B0CA-81CAC8CFD203}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A17C39CF-C23C-4C1F-B0CA-81CAC8CFD203}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A17C39CF-C23C-4C1F-B0CA-81CAC8CFD203}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C65A2A01-058C-4157-AF30-CF8125B0F19C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C65A2A01-058C-4157-AF30-CF8125B0F19C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65A2A01-058C-4157-AF30-CF8125B0F19C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C65A2A01-058C-4157-AF30-CF8125B0F19C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80CF1FB-EEAC-409F-BA2D-B76B62B850B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80CF1FB-EEAC-409F-BA2D-B76B62B850B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80CF1FB-EEAC-409F-BA2D-B76B62B850B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80CF1FB-EEAC-409F-BA2D-B76B62B850B0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9EBC267-28C0-4FC8-8D46-4C244B5BEC55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A9EBC267-28C0-4FC8-8D46-4C244B5BEC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9EBC267-28C0-4FC8-8D46-4C244B5BEC55}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Posseth.Global.UlidFactory.csproj" />
+    <ProjectReference Include="..\src\Posseth.Global.UlidFactory\Posseth.Global.UlidFactory.csproj" />
   </ItemGroup>
 
   <ItemGroup>
