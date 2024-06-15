@@ -15,6 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Posseth.Global.UlidFactory"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Posseth.Global.UlidFactory.MSSQL", "src\posseth.global.ulid.mssql\Posseth.Global.UlidFactory.MSSQL.csproj", "{A9EBC267-28C0-4FC8-8D46-4C244B5BEC55}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQLDeploy", "MSSQLDeploy", "{030F01E6-00D6-402B-AABA-8BE087FBFD4D}"
+	ProjectSection(SolutionItems) = preProject
+		src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.dll = src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.dll
+		src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.pdb = src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.pdb
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +42,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{030F01E6-00D6-402B-AABA-8BE087FBFD4D} = {92DBEB8D-610E-4A0B-8899-DC1348A6FC90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AE18361-E31B-4AE3-A2BA-FAB8EFFA4540}
