@@ -1,4 +1,4 @@
-﻿using Posseth.Global.UlidFactory;
+﻿using Posseth.UlidFactory;
 namespace Posseth.Global.UlidFactory.Tests
 {
     

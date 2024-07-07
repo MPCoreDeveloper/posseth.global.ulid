@@ -1,7 +1,7 @@
 ﻿// Michel Posseth - 2024-05-20 YYYY-MM-DD
 // Encode and decode Base32 
 using System.Text;
-namespace Posseth.Global.UlidFactory.Encoding
+namespace Posseth.UlidFactory.Encoding
 {
     public static class Base32
     {

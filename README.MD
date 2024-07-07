@@ -1,4 +1,4 @@
-# Posseth.Global.UlidFactory
+# Posseth.UlidFactory
 
 ## Overview
 This library is a C# library that provides a Ulid type in .Net 
@@ -28,7 +28,7 @@ Generating a New ULID
 You can generate a new ULID using the NewUlid method. This can be done with the current timestamp or with a specified timestamp.
 ```csharp	
 using System;
-using Posseth.Global.UlidFactory;
+using Posseth.UlidFactory;
 
 class Program
 {
@@ -55,7 +55,7 @@ You can parse an existing ULID string using the Parse method. If the ULID string
 Alternatively, you can us the TryParse method to avoid exceptions and handle invalid ULIDs more gracefully.
 ```csharp	
 using System;
-using Posseth.Global.UlidFactory;
+using Posseth.UlidFactory;
 
 class Program
 {
@@ -92,7 +92,7 @@ Extracting the Timestamp from a ULID
 You can extract the timestamp from a ULID and convert it to a DateTime or Unix timestamp using the ToDateTime, ToEpoch, or ToUnixTime methods.
 ```csharp	
 using System;
-using Posseth.Global.UlidFactory;
+using Posseth.UlidFactory;
 
 class Program
 {

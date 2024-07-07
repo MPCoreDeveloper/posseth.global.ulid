@@ -3,8 +3,8 @@
 // made type methods static / more robust 
 // Handy ULID factory
 using System.Security.Cryptography;
-using Posseth.Global.UlidFactory.Encoding;
-namespace Posseth.Global.UlidFactory
+using Posseth.UlidFactory.Encoding;
+namespace Posseth.UlidFactory
 {
     public class Ulid
     {
