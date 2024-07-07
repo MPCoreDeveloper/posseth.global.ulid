@@ -21,11 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQLDeploy", "MSSQLDeploy"
 		src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.pdb = src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.pdb
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{40543C09-FF8E-4076-B9DF-14A2CD5EF029}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{06474857-923C-423B-8EA5-A9D62AE238E6}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\Posse\OneDrive\Afbeeldingen\assets\ulid.png = C:\Users\Posse\OneDrive\Afbeeldingen\assets\ulid.png
-		C:\Users\Posse\OneDrive\Afbeeldingen\assets\ulid.xcf = C:\Users\Posse\OneDrive\Afbeeldingen\assets\ulid.xcf
-		C:\Users\Posse\OneDrive\Afbeeldingen\assets\_561c52ac-9a3a-4e8b-aa58-c58ed3625e88.jpeg = C:\Users\Posse\OneDrive\Afbeeldingen\assets\_561c52ac-9a3a-4e8b-aa58-c58ed3625e88.jpeg
+		assets\ulid.png = assets\ulid.png
+		assets\ulid.xcf = assets\ulid.xcf
+		assets\_561c52ac-9a3a-4e8b-aa58-c58ed3625e88.jpeg = assets\_561c52ac-9a3a-4e8b-aa58-c58ed3625e88.jpeg
 	EndProjectSection
 EndProject
 Global
@@ -51,7 +51,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{40543C09-FF8E-4076-B9DF-14A2CD5EF029} = {92DBEB8D-610E-4A0B-8899-DC1348A6FC90}
+		{06474857-923C-423B-8EA5-A9D62AE238E6} = {92DBEB8D-610E-4A0B-8899-DC1348A6FC90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AE18361-E31B-4AE3-A2BA-FAB8EFFA4540}
