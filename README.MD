@@ -1,5 +1,5 @@
 # Posseth.UlidFactory
-![ulid](assets/ulid.png)
+![ulid](https://raw.githubusercontent.com/MPCoreDeveloper/posseth.global.ulid/master/assets/ulid.png)
 ## Overview
 This library is a C# library that provides a Ulid type in .Net 
 (C#,VB.Net tested by DEV)
@@ -12,16 +12,16 @@ The timestamp is encoded in Crockford's Base32 format, which allows the ULID to 
 The random value provides uniqueness and helps prevent collisions between ULIDs generated at the same time.
 
 ## Features
-Posseth.Global.UlidFactory library provides the following features:
+Posseth.UlidFactory library provides the following features:
 ULID generation Parsing and DateTime , Epoch , UnixTime conversion from the ulid.
 it can handle new Ulids but also existing Ulids read from Database and optionally convert them to DateTime , Epoch , UnixTime
 
 ## Installation
-To install Posseth.Global.UlidFactory, add the following reference to your project:
-using Posseth.Global.UlidFactory;
+To install Posseth.UlidFactory, add the following reference to your project:
+using Posseth.UlidFactory;
 
 ## Usage
-To use Posseth.Global.UlidFactory in a C# project, add the following using statement to your C# file:
+To use Posseth.UlidFactory in a C# project, add the following using statement to your C# file:
 
 
 Generating a New ULID
