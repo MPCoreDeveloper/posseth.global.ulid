@@ -16,6 +16,14 @@ Posseth.UlidFactory library provides the following features:
 ULID generation Parsing and DateTime , Epoch , UnixTime conversion from the ulid.
 it can handle new Ulids but also existing Ulids read from Database and optionally convert them to DateTime , Epoch , UnixTime
 
+## Recent Improvements (C# 14 Compatibility)
+The Ulid class has been updated to leverage modern C# features for better performance, immutability, and maintainability:
+- **Record Type**: Converted to a `record` for built-in immutability, equality, and hashing support.
+- **File-Scoped Namespace**: Adopted file-scoped namespaces to reduce indentation and improve readability.
+- **Span and ReadOnlySpan Usage**: Utilized `Span<T>` and `ReadOnlySpan<T>` with `stackalloc` to minimize heap allocations and enhance performance in byte operations.
+- **Performance Optimizations**: Reduced unnecessary allocations in encoding/decoding and timestamp extraction, making the library more efficient for high-throughput scenarios.
+These changes maintain full backward compatibility while aligning with C# 14 best practices.
+
 ## Installation
 To install Posseth.UlidFactory, add the following reference to your project:
 using Posseth.UlidFactory;
