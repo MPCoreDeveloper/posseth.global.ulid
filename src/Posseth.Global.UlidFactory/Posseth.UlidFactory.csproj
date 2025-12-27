@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>MPCoreDeveloper</Authors>
     <Company>Posseth Software</Company>
     <Description>A simple net Ulid factory note also available for MSSQL
@@ -21,8 +21,8 @@ see project page on Git</Description>
     <Copyright>Free to use , distribute and modify </Copyright>
     <PackageTags>ulid;identifier;unique-id;sortable-id; guid-alternative;dotnet;netcore;net8;Ulidfactory</PackageTags>
     <PackageReleaseNotes>upgraded to net 10 and C# 14 tested in VS 2026</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

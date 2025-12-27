@@ -2,6 +2,7 @@
 // Encode and decode Base32 
 using System;
 using System.Text;
+
 namespace Posseth.Global.UlidFactory.Encoding
 {
     public static class Base32
@@ -20,7 +21,7 @@ namespace Posseth.Global.UlidFactory.Encoding
                 return string.Empty;
             }
 
-            StringBuilder result = new StringBuilder(data.Length * 8 / 5 + 1);
+            var result = new StringBuilder(data.Length * 8 / 5 + 1);
             int hi = 0, bitsRemaining = 0, index = 0;
 
             while (index < data.Length)
@@ -60,12 +61,12 @@ namespace Posseth.Global.UlidFactory.Encoding
 
             if (input.Length == 0)
             {
-                return new byte[0];
+                return Array.Empty<byte>();
             }
 
             input = input.ToUpperInvariant();
 
-            byte[] output = new byte[input.Length * 5 / 8];
+            var output = new byte[input.Length * 5 / 8];
             int bits = 0;
             int bitsRemaining = 0;
             int outputIndex = 0;

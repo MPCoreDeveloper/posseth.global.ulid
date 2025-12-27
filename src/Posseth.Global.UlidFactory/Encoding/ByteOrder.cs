@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Posseth.UlidFactory.Encoding;
 
-namespace Posseth.UlidFactory.Encoding
+public enum ByteOrder
 {
-    public enum ByteOrder
-    {
-        LittleEndian,
-        BigEndian
-    }
+    LittleEndian,
+    BigEndian
 }

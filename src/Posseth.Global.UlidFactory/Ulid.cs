@@ -28,10 +28,7 @@ public record Ulid(string Value)
 
     public static Ulid NewUlid(long timestamp)
     {
-        if (timestamp < 0)
-        {
-            throw new ArgumentException("Timestamp must be a positive number.");
-        }
+        ArgumentOutOfRangeException.ThrowIfNegative(timestamp, nameof(timestamp));
 
         Span<byte> ulidBytes = stackalloc byte[16];
 
@@ -41,23 +38,24 @@ public record Ulid(string Value)
             timestamp >>= 8;
         }
 
-        using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            rng.GetBytes(ulidBytes[6..]);
+        RandomNumberGenerator.Fill(ulidBytes[6..]);
 
-        string ulid = Base32.Encode(ulidBytes.ToArray());
+        var ulid = Base32.Encode(ulidBytes.ToArray());
         return new Ulid(ulid);
     }
 
     public static DateTime GetTimestampFromUlid(Ulid ulid)
     {
+        ArgumentException.ThrowIfNullOrEmpty(ulid.Value, nameof(ulid));
+        
         if (ulid.Value.Length != 26)
         {
-            throw new ArgumentException("Invalid ULID length. ULID should be 26 characters long.");
+            throw new ArgumentException("Invalid ULID length. ULID should be 26 characters long.", nameof(ulid));
         }
 
         ReadOnlySpan<byte> bytes = Base32.Decode(ulid.Value[..10]);
 
-        long timestamp = ExtractTimestamp(bytes);
+        var timestamp = ExtractTimestamp(bytes);
 
         return DateTime.UnixEpoch.AddMilliseconds(timestamp);
     }
@@ -71,17 +69,15 @@ public record Ulid(string Value)
     {
         if (string.IsNullOrEmpty(Value) || Value.Length != 26)
         {
-            return 0;// if the value is empty or not 26 characters long, return 0
+            return 0;
         }
 
         ReadOnlySpan<byte> bytes = Base32.Decode(Value[..10]);
 
         return ExtractTimestamp(bytes);
     }
-    public long ToUnixTime()
-    {
-        return ToEpoch();
-    }
+    
+    public long ToUnixTime() => ToEpoch();
 
     private static long ExtractTimestamp(ReadOnlySpan<byte> bytes)
     {
@@ -93,17 +89,11 @@ public record Ulid(string Value)
         return timestamp;
     }
 
-    public override string ToString()
-    {
-        return Value;
-    }
+    public override string ToString() => Value;
 
-    public bool HasValue()
-    {
-        return !string.IsNullOrEmpty(Value);
-    }
+    public bool HasValue() => !string.IsNullOrEmpty(Value);
 
-    public static bool TryParse(string ulidString, out Ulid? ulid)
+    public static bool TryParse(string? ulidString, out Ulid? ulid)
     {
         ulid = null;
 
@@ -115,7 +105,7 @@ public record Ulid(string Value)
         try
         {
             ReadOnlySpan<byte> bytes = Base32.Decode(ulidString);
-            long timestamp = ExtractTimestamp(bytes);
+            var timestamp = ExtractTimestamp(bytes);
             if (timestamp < 0)
             {
                 return false;
@@ -123,39 +113,34 @@ public record Ulid(string Value)
             ulid = new Ulid(ulidString);
             return true;
         }
-        catch (FormatException)
-        {
-            return false;
-        }
-        catch (ArgumentException)
+        catch (Exception ex) when (ex is FormatException or ArgumentException)
         {
             return false;
         }
     }
-    public static Ulid Parse(string ulidString)
+    
+    public static Ulid Parse(string? ulidString)
     {
-        if (string.IsNullOrEmpty(ulidString) || ulidString.Length != 26)
+        ArgumentException.ThrowIfNullOrEmpty(ulidString, nameof(ulidString));
+        
+        if (ulidString.Length != 26)
         {
-            throw new ArgumentException("Invalid ULID string. ULID should be 26 characters long.");
+            throw new ArgumentException("Invalid ULID string. ULID should be 26 characters long.", nameof(ulidString));
         }
 
         try
         {
             ReadOnlySpan<byte> bytes = Base32.Decode(ulidString);
-            long timestamp = ExtractTimestamp(bytes);
+            var timestamp = ExtractTimestamp(bytes);
             if (timestamp < 0)
             {
-                throw new ArgumentException("Invalid ULID string.");
+                throw new ArgumentException("Invalid ULID string.", nameof(ulidString));
             }
             return new Ulid(ulidString);
         }
-        catch (FormatException)
+        catch (Exception ex) when (ex is FormatException or ArgumentException)
         {
-            throw new ArgumentException("Invalid ULID string format.");
-        }
-        catch (ArgumentException)
-        {
-            throw new ArgumentException("Invalid ULID string.");
+            throw new ArgumentException("Invalid ULID string format.", nameof(ulidString), ex);
         }
     }
 }
