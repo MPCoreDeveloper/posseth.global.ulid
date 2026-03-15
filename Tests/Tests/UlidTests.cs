@@ -1,5 +1,4 @@
 ﻿using Posseth.UlidFactory;
-using Xunit;
 
 namespace Posseth.Global.UlidFactory.Tests;
 
