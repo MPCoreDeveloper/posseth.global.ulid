@@ -321,7 +321,9 @@ FROM Orders;
 ```
 
 ## Pre-compiled DLL
-For your convenience, a compiled DLL is included in the repository. You can use the above commands to add the assembly to your database without building the project yourself.
+For your convenience, a pre-compiled **v2.0.0** assembly is included in the repository at
+`src\posseth.global.ulid.mssql\Deploy\Posseth.Global.UlidFactory.MSSQL.dll`.
+You can use the above commands to add the assembly to your database without building the project yourself.
 
 ---
 
