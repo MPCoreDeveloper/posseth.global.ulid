@@ -228,9 +228,9 @@ Build the project and create a file hash of the assembly:
 certutil -hashfile "C:\path\to\your\Posseth.Global.UlidFactory.MSSQL.dll" SHA512
 ```
 
-The result should look like:
+The result should look like (hash of the current **v2.0.0** build):
 ```
-b424f44500e83e72c8b4b60528250a40a4eabfddbb6b9c0e93208e6ddc63815e80180f26814f85bdad5ba2c88209d732397c7599e809da6df5146cc94daa250e
+12671950bfe9ca0d98b9cbb00be542bab95fcfb82d98b4d403c0f55dac3d12fd01e8f49db725a446512aa631fd1d84935c908e6c84cc19f62ad50fac2141950f
 ```
 
 ### Step 3: Trust the Assembly
@@ -239,7 +239,7 @@ Before adding the assembly to the database, you need to tell SQL Server that you
 ```sql
 -- Step 1: Declare a variable and convert the hash to a binary value
 DECLARE @binaryHash varbinary(64);
-SET @binaryHash = CONVERT(varbinary(64), 0xB424F44500E83E72C8B4B60528250A40A4EABFDDBB6B9C0E93208E6DDC63815E80180F26814F85BDAD5BA2C88209D732397C7599E809DA6DF5146CC94DAA250E, 1);
+SET @binaryHash = CONVERT(varbinary(64), 0x12671950BFE9CA0D98B9CBB00BE542BAB95FCFB82D98B4D403C0F55DAC3D12FD01E8F49DB725A446512AA631FD1D84935C908E6C84CC19F62AD50FAC2141950F, 1);
 
 -- Step 2: Use the variable as parameter in the stored procedure
 EXEC sp_add_trusted_assembly @hash = @binaryHash;
@@ -247,6 +247,9 @@ EXEC sp_add_trusted_assembly @hash = @binaryHash;
 
 ### Step 4: Create the Assembly
 Now you can add the assembly to the database:
+> When upgrading from a previous version, drop the existing assembly first,
+> otherwise SQL Server returns an "assembly already exists" error:
+> `DROP ASSEMBLY UlidFactoryMSSQL;`
 
 ```sql
 CREATE ASSEMBLY UlidFactoryMSSQL
