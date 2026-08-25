@@ -1,6 +1,8 @@
 ﻿// Start: Michel Posseth - 2024-05-20 YYYY-MM-DD
 // MOD : Michel Posseth - 2024-05-26 YYYY-MM-DD
 // made type methods static / more robust 
+// MOD : Michel Posseth - 2026-08-25 YYYY-MM-DD
+// v2.0: standard compliant Base32 encoding, ULIDs interchangeable with other implementations
 // Handy ULID factory
 using System;
 using System.Security.Cryptography;
@@ -36,6 +38,12 @@ namespace Posseth.Global.UlidFactory.MSSQL
             if (timestamp < 0)
             {
                 throw new ArgumentException("Timestamp must be a positive number.");
+            }
+
+            // The ULID standard limits the timestamp to 48 bits (max 2^48 - 1 milliseconds).
+            if (timestamp > 0xFFFFFFFFFFFF)
+            {
+                throw new ArgumentOutOfRangeException(nameof(timestamp), "Timestamp exceeds the maximum of 2^48 - 1 milliseconds.");
             }
 
             byte[] ulidBytes = new byte[16];

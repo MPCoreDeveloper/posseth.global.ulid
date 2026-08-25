@@ -49,5 +49,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ulid.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="TSQL\Ulid.TSQL.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

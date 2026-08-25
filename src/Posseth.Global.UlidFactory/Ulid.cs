@@ -1,6 +1,8 @@
 ﻿// Start: Michel Posseth - 2024-05-20 YYYY-MM-DD
 // MOD : Michel Posseth - 2024-05-26 YYYY-MM-DD
 // made type methods static / more robust 
+// MOD : Michel Posseth - 2026-08-25 YYYY-MM-DD
+// v2.0: standard compliant Base32 encoding, ULIDs interchangeable with other implementations
 // Handy ULID factory
 using System.Security.Cryptography;
 using Posseth.UlidFactory.Encoding;
@@ -29,6 +31,8 @@ public record Ulid(string Value)
     public static Ulid NewUlid(long timestamp)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(timestamp, nameof(timestamp));
+        // The ULID standard limits the timestamp to 48 bits (max 2^48 - 1 milliseconds).
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(timestamp, 0xFF_FF_FF_FF_FF_FF, nameof(timestamp));
 
         Span<byte> ulidBytes = stackalloc byte[16];
 
