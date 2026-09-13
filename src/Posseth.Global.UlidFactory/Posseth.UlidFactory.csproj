@@ -1,10 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <!-- v2.1.0-RC.1: multi-target net10 (C# 14) + net11 (C# 15 preview).
+         Mirrors the SharpCoreDB net11 RC pattern. -->
+    <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
+    <LangVersion Condition="'$(TargetFramework)' == 'net11.0'">preview</LangVersion>
+    <LangVersion Condition="'$(TargetFramework)' != 'net11.0'">14.0</LangVersion>
+    <Features Condition="'$(TargetFramework)' == 'net11.0'">$(Features);runtime-async=on</Features>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>2.0.0</Version>
+    <Version>2.1.0-RC.1</Version>
     <Authors>MPCoreDeveloper</Authors>
     <Company>Posseth Software</Company>
     <Description>A simple net Ulid factory note also available for MSSQL
@@ -19,10 +24,10 @@ see project page on Git</Description>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Free to use , distribute and modify </Copyright>
-    <PackageTags>ulid;identifier;unique-id;sortable-id; guid-alternative;dotnet;netcore;net8;Ulidfactory</PackageTags>
-    <PackageReleaseNotes>2.0.0: Base32 encoding corrected to be fully compliant with the ULID specification. Generated ULIDs are now interchangeable with all other standards-compliant ULID implementations. This is a breaking change: ULIDs produced by 1.x are not interchangeable with 2.x.</PackageReleaseNotes>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <PackageTags>ulid;identifier;unique-id;sortable-id; guid-alternative;dotnet;netcore;net8;net10;net11;Ulidfactory</PackageTags>
+    <PackageReleaseNotes>2.1.0-RC.1: adds a .NET 11 (C# 15 preview) target alongside .NET 10 (C# 14). No API or behaviour change; ULIDs remain fully ULID-spec compliant and interchangeable.</PackageReleaseNotes>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
