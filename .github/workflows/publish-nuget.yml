@@ -1,0 +1,66 @@
+name: Publish NuGet Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for publishing'
+        required: false
+        default: 'Manual publish'
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_VERSION: '11.0.100-rc.1.26425.128'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  NUGET_SOURCE: https://api.nuget.org/v3/index.json
+
+jobs:
+  publish:
+    name: Pack & Publish to NuGet.org
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 11 (RC)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '11.0.100-rc.1.26425.128'
+
+      - name: Restore
+        run: dotnet restore Tests/Posseth.Global.UlidFactory.Tests.csproj
+
+      - name: Build (Release)
+        run: dotnet build Tests/Posseth.Global.UlidFactory.Tests.csproj --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test Tests/Posseth.Global.UlidFactory.Tests.csproj --configuration Release --no-build
+
+      - name: Pack
+        run: dotnet pack src/Posseth.Global.UlidFactory/Posseth.UlidFactory.csproj --configuration Release --output ./artifacts
+
+      - name: Publish to NuGet.org
+        shell: bash
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NUGET_API_KEY:-}" ]; then
+            echo "::error::NUGET_API_KEY secret is not configured for this repository."
+            exit 1
+          fi
+          for pkg in ./artifacts/*.nupkg; do
+            [ -f "$pkg" ] || continue
+            echo "  -> Pushing $(basename "$pkg")"
+            dotnet nuget push "$pkg" \
+              --api-key "$NUGET_API_KEY" \
+              --source "$NUGET_SOURCE" \
+              --skip-duplicate
+          done
+          echo "Published to NuGet.org"

@@ -5,6 +5,8 @@
     <LangVersion Condition="'$(TargetFramework)' == 'net11.0'">preview</LangVersion>
     <LangVersion Condition="'$(TargetFramework)' != 'net11.0'">14.0</LangVersion>
     <Features Condition="'$(TargetFramework)' == 'net11.0'">$(Features);runtime-async=on</Features>
+    <!-- Run xunit.v3 through Microsoft.Testing.Platform via `dotnet test`. -->
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
